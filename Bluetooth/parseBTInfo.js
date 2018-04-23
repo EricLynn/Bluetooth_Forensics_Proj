@@ -23,10 +23,9 @@ $.getJSON("a.json", function(json) {
         // Add some bold text in the new cell:
         cell.setAttribute("style", "visibility: hidden");
         cell.width = "1%";
-        
-        cell1.innerHTML = "<b>Bluetooth ID</b>";
-        cell2.innerHTML = "<b>Date spotted</b>";
-        cell3.innerHTML = "<b>Related Devices</b>";
+        cell1.outerHTML = "<th>Bluetooth ID</th>"
+        cell2.outerHTML = "<th>Date spotted</th>";
+        cell3.outerHTML = "<th>Related Devices</th>";
         
         cell3.width = "40%";
         
