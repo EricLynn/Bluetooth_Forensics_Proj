@@ -27,19 +27,11 @@ $.getJSON("bt_profiles.json", function(json) {
         // Create an empty <tr> element and add it to the first position of <thead>:
         var row = header.insertRow(0);
 
-
-        var cell = row.insertCell(0);
-        cell.className = "col1";
-        cell.innerHTML = "BluetoothData";
-
         var cell1 = row.insertCell(0); 
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3); 
 
         // Add some bold text in the new cell:
-        cell.setAttribute("style", "visibility: hidden");
-        cell.width = "1%";
         cell1.outerHTML = "<th>Bluetooth ID</th>"
         cell2.outerHTML = "<th>Date spotted</th>";
         cell3.outerHTML = "<th>Related Devices</th>";
@@ -54,8 +46,8 @@ $.getJSON("bt_profiles.json", function(json) {
         {
 			var row = tblbody.insertRow();
 			var cell1 = row.insertCell(0); 
-            		var cell2 = row.insertCell(1);
-            		var cell3 = row.insertCell(2);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
 			
 			cell1.innerHTML = currentDevice;
 			cell2.innerHTML = json[currentDevice].timestamp;
@@ -63,8 +55,8 @@ $.getJSON("bt_profiles.json", function(json) {
 			if(json[currentDevice].profile.length != 0) {
                 var profileInfo = json[currentDevice].profile;
                 var profileInfoFormat = JSON.stringify(profileInfo);
-                cell3.innerHTML = "<button id='link"+ indexID +"' onclick='getRelatedInfo("+ indexID +"," + profileInfoFormat + ")'> Click here for related devices! </button>";
-                
+                cell3.innerHTML = "<button id=link"+ indexID +" onclick='getRelatedInfo("+ indexID +"," + profileInfoFormat + ")'> Click here for related devices! </button>";
+ 
                 console.log(indexID);
 			}
 			else{
