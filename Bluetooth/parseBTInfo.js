@@ -1,3 +1,20 @@
+var indexID = 0;
+
+function getRelatedInfo(id, profileInfo)
+{
+    var profileInfoString = profileInfo + '';
+    var profiles = profileInfoString.split(',');
+    var profileInfoFormatted = "";
+    
+    for (var i = 0; i < profileInfo.length; i++)
+    {      
+        profileInfoFormatted += profiles[i] + '\n';
+    }
+    
+    alert(profileInfoFormatted);
+    $('#dvRelatedDevices').text(profileInfoFormatted);
+}
+
 $.getJSON("bt_profiles.json", function(json) {
     
         // Find a <table> element with id="myTable":
@@ -31,8 +48,10 @@ $.getJSON("bt_profiles.json", function(json) {
         
         tblbody = document.createElement("tbody");
         tblbody.id = "tbody";
-		
-		for (var currentDevice in json){
+        
+        // var indexID = 0;
+        for (var currentDevice in json) 
+        {
 			var row = tblbody.insertRow();
 			var cell1 = row.insertCell(0); 
             		var cell2 = row.insertCell(1);
@@ -41,12 +60,19 @@ $.getJSON("bt_profiles.json", function(json) {
 			cell1.innerHTML = currentDevice;
 			cell2.innerHTML = json[currentDevice].timestamp;
 			cell3.innerHTML = "*None yet*";
-			if(json[currentDevice].profile.length != 0){
-				cell3.innerHTML = "<p>Click here for related devices!</p>";
+			if(json[currentDevice].profile.length != 0) {
+                var profileInfo = json[currentDevice].profile;
+                var profileInfoFormat = JSON.stringify(profileInfo);
+                cell3.innerHTML = "<button id='link"+ indexID +"' onclick='getRelatedInfo("+ indexID +"," + profileInfoFormat + ")'> Click here for related devices! </button>";
+                
+                console.log(indexID);
 			}
 			else{
 				
 			}
-			table.appendChild(tblbody);
+            table.appendChild(tblbody);
+            indexID++;
 		}
 });
+
+
