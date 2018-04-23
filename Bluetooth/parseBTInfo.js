@@ -1,4 +1,4 @@
-$.getJSON("a.json", function(json) {
+$.getJSON("bt_profiles.json", function(json) {
     
         // Find a <table> element with id="myTable":
         var table = document.getElementById("table");
