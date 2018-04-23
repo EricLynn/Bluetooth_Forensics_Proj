@@ -36,12 +36,18 @@ $.getJSON("a.json", function(json) {
 		for (var currentDevice in json){
 			var row = tblbody.insertRow();
 			var cell1 = row.insertCell(0); 
-            var cell2 = row.insertCell(1);
-            var cell3 = row.insertCell(2);
+            		var cell2 = row.insertCell(1);
+            		var cell3 = row.insertCell(2);
 			
 			cell1.innerHTML = currentDevice;
 			cell2.innerHTML = json[currentDevice].timestamp;
-			cell3.innerHTML = json[currentDevice].profile;
+			cell3.innerHTML = "*None yet*";
+			if(json[currentDevice].profile.length != 0){
+				cell3.innerHTML = "<p>Click here for related devices!</p>";
+			}
+			else{
+				
+			}
 			table.appendChild(tblbody);
 		}
 });
